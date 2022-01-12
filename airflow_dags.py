@@ -19,6 +19,7 @@ intervals = {
     "every_3_days": "0 0 */3 * *",
     "weekly_monday_8pm": "0 18 * * 1",
     "weekly_tuesday_8pm": "0 18 * * 2",
+    "weekly_wednesday_8pm": "0 12 * * 3",
 }
 bash_command = "docker exec movies_docker python {{ task.task_id }}.py "
 
@@ -26,7 +27,7 @@ with DAG(
         "netflix_top10",
         description="netflix top 10",
         default_args=default_args,
-        schedule_interval=intervals["weekly_tuesday_8pm"],
+        schedule_interval=intervals["weekly_wednesday_8pm"],
         start_date=datetime(2021, 12, 18, tzinfo=timezone("Europe/Amsterdam")),
 ) as netflix_top10_dag:
     netflix_top10_task = BashOperator(
