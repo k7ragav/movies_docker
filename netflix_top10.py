@@ -9,9 +9,9 @@ from bs4 import BeautifulSoup
 # open .tsv file
 
 def sql_connection():
-    mydb = mysql.connector.connect(host="5.255.98.125 ",
+    mydb = mysql.connector.connect(host="87.106.113.205",
                                    user = "keshava",
-                                   password = 'Dhanam_7',
+                                   password = 'nivikesh2021',
                                    database = 'movie_db'
                                    )
 

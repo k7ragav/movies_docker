@@ -28,7 +28,7 @@ with DAG(
         description="netflix top 10",
         default_args=default_args,
         schedule_interval=intervals["weekly_wednesday_8pm"],
-        start_date=datetime(2021, 12, 18, tzinfo=timezone("Europe/Amsterdam")),
+        start_date=datetime(2022, 8, 2, tzinfo=timezone("Europe/Amsterdam")),
 ) as netflix_top10_dag:
     netflix_top10_task = BashOperator(
         task_id="netflix_top10",
