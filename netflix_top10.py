@@ -4,14 +4,17 @@ import csv
 import requests
 import os
 import mysql.connector
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from bs4 import BeautifulSoup
 # open .tsv file
 
 def sql_connection():
     mydb = mysql.connector.connect(host="87.106.113.205",
-                                   user = "keshava",
-                                   password = 'nivikesh2021',
+                                   user = os.getenv('DB_USER'),
+                                   password = os.getenv('DB_PASSWORD'),
                                    database = 'movie_db'
                                    )
 

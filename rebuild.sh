@@ -30,3 +30,5 @@ docker rm "$CONTAINERNAME" || true
 
 # recreate and run docker container
 docker run -itd --name "$CONTAINERNAME" "$IMAGE"
+
+docker run --env-file .env "$CONTAINERNAME" "$IMAGE"
