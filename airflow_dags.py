@@ -22,6 +22,7 @@ intervals = {
     "weekly_wednesday_8pm": "0 12 * * 3",
 }
 bash_command = "docker exec movies_docker python {{ task.task_id }}.py "
+bash_command_with_date = "docker exec movies_docker python {{ task.task_id }}.py {{ds}}"
 
 with DAG(
         "netflix_top10",
@@ -34,3 +35,16 @@ with DAG(
         task_id="netflix_top10",
         bash_command=bash_command,
     )
+
+with DAG(
+        "thenumbers_weekly",
+        description="thenumbers_weekly",
+        default_args=default_args,
+        schedule_interval=intervals["weekly_tuesday_8pm"],
+        start_date=datetime(2022, 8, 2, tzinfo=timezone("Europe/Amsterdam")),
+) as numbers_weekly_dag:
+    numbers_weekly_extract_task = BashOperator(
+        task_id="thenumbers_weekly_extract",
+        bash_command=bash_command_with_date,
+    )
+
