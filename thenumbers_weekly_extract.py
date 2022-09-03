@@ -45,13 +45,13 @@ def clean_table_data(data: list, weekend_date:str) -> pd.DataFrame:
         df = df.rename(columns={"index": "Ranking"})
         df['Ranking'] = df.index + 1
         df.rename(columns={'%LW': 'Per_LW'}, inplace=True)
+        df['WeekendDate'] = weekend_date.replace(f'/', '-')
         df.drop(df.tail(2).index, inplace=True)
         return df
 
 def export_data(df: pd.DataFrame, weekend_date: str) -> None:
         weekend_date_cleaned = weekend_date.replace(f'/', "")
         df.to_csv(f"{weekend_date_cleaned}.csv", index=False)
-        os.remove(f"{weekend_date_cleaned}.csv")
 
 def main():
 
@@ -61,7 +61,7 @@ def main():
         data = extract_table_data(soup)
 
         df = clean_table_data(data=data, weekend_date=weekend_date)
-        export_data(df=df,weekend_date=weekend_date)
+        export_data(df=df, weekend_date=weekend_date)
 
 
 
