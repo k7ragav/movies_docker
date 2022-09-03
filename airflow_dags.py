@@ -37,12 +37,12 @@ with DAG(
     )
 
 with DAG(
-        "thenumbers_weekly",
-        description="thenumbers_weekly",
+        "box_office_numbers_weekly",
+        description="boxoffice_numbers_weekly",
         default_args=default_args,
         schedule_interval=intervals["weekly_tuesday_8pm"],
         start_date=datetime(2021, 12, 21, tzinfo=timezone("Europe/Amsterdam")),
-) as numbers_weekly_dag:
+) as box_office_numbers_weekly_dag:
     numbers_weekly_extract_task = BashOperator(
         task_id="thenumbers_weekly_extract",
         bash_command=bash_command_with_date,
@@ -52,4 +52,3 @@ with DAG(
         bash_command=bash_command_with_date,
     )
     numbers_weekly_extract_task >> numbers_weekly_load_task
-
