@@ -11,8 +11,9 @@ import datetime
 
 
 def get_weekend_date(date: str) -> str:
-        today_date = datetime.datetime.strptime(sys.argv[1], "%Y-%m-%d")
-        weekend_date = (today_date - timedelta(4)).strftime('%Y/%m/%d')
+        today_date = datetime.datetime.strptime(date, "%Y-%m-%d")
+        today_date_corrected = today_date + timedelta(7)
+        weekend_date = (today_date_corrected - timedelta(4)).strftime('%Y/%m/%d')
         return weekend_date
 
 def get_soup_content(main_url: str, weekend_date: str) -> Any:
